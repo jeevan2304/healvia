@@ -3,7 +3,9 @@ import '../widgets/app_drawer.dart';
 import '../widgets/health_cards.dart';
 import '../widgets/health_insights.dart';
 import '../widgets/recent_records.dart';
-import '../pages/appointments.dart'; // Make sure the path is correct
+import '../pages/appointments.dart';
+import '../pages/health_records.dart';
+import 'package:iconsax/iconsax.dart'; // Make sure the path is correct
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -20,7 +22,7 @@ class _DashboardPageState extends State<DashboardPage> {
     "Health Records",
     "Appointments",
     "AI Insights",
-    "Messages",
+
     "Emergency"
   ];
 
@@ -28,8 +30,8 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     final List<Widget> pages = [
       _buildDashboardContent(),
-      const Center(child: Text("Health Records")),
-      const AppointmentsPage(),
+      HealthRecordsPage(),
+      AppointmentsPage(),
       const Center(child: Text("AI Insights")),
       const Center(child: Text("Messages")),
       const Center(child: Text("Emergency")),
@@ -66,14 +68,30 @@ class _DashboardPageState extends State<DashboardPage> {
           });
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Dashboard'),
-          BottomNavigationBarItem(icon: Icon(Icons.folder), label: 'Records'),
-          BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: 'Appointments'),
-          BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: 'AI Insights'),
-          BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Messages'),
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.category), // dashboard
+            label: 'Dashboard',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.folder_open), // health records
+            label: 'Records',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.calendar), // appointments
+            label: 'Appointments',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.activity), // ai insights
+            label: 'AI Insights',
+          ),
 
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.warning_2), // emergency
+            label: 'Emergency',
+          ),
         ],
       ),
+
     );
   }
 
