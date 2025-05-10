@@ -55,7 +55,7 @@ class _DashboardPageState extends State<DashboardPage> {
           style: GoogleFonts.poppins( // Using Poppins font
             fontSize: 24,
             fontWeight: FontWeight.bold,
-          ),
+          ),""
         ),
         actions: _currentIndex == 0
             ? [
