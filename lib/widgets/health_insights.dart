@@ -8,7 +8,7 @@ class HealthInsights extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("AI Health Insights", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        const Text("AI Insights", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold , color: Colors.black)),
         const SizedBox(height: 10),
         _insightCard("Based on your recent blood pressure readings, consider reducing sodium intake and increasing potassium-rich foods in your diet."),
         _insightCard("Your sleep pattern shows improvement. Continue with your current sleep hygiene practices."),

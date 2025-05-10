@@ -35,8 +35,8 @@ dependencies:
   table_calendar: ^3.0.9
   iconsax: ^0.0.8
   http: ^1.0.0
+  fl_chart: ^0.65.0
 
-  fl_chart: ^0.64.0
   flutter_blue_plus: ^1.0.0 # or latest version
   permission_handler: ^11.0.0
 

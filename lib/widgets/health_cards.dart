@@ -7,22 +7,59 @@ class HealthCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
+      children: [
+         Text(
+          "DashBoard",
+          style:GoogleFonts.poppins(fontSize: 24,fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(child: _HealthCard(icon: Icons.favorite, label: 'Heart Rate', value: '72 BPM')),
+            Expanded(
+              child: _HealthCard(
+                icon: Icons.favorite,
+                label: 'Heart Rate',
+                value: '72 BPM',
+                backgroundColor: const Color(0xFF333333), // Light black
+                iconColor: Colors.redAccent,
+              ),
+            ),
             SizedBox(width: 12),
-            Expanded(child: _HealthCard(icon: Icons.monitor_heart, label: 'Blood Pressure', value: '120/80')),
+            Expanded(
+              child: _HealthCard(
+                icon: Icons.monitor_heart,
+                label: 'Blood Pressure',
+                value: '120/80',
+                backgroundColor: const Color(0xFF333333), // Light black
+                iconColor: Colors.blueAccent,
+              ),
+            ),
           ],
         ),
         SizedBox(height: 12),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(child: _HealthCard(icon: Icons.medication, label: 'Medication', value: '2 Today')),
+            Expanded(
+              child: _HealthCard(
+                icon: Icons.medication,
+                label: 'Medication',
+                value: '2 Today',
+                backgroundColor: const Color(0xFF333333), // Light black
+                iconColor: Colors.greenAccent,
+              ),
+            ),
             SizedBox(width: 12),
-            Expanded(child: _HealthCard(icon: Icons.calendar_month, label: 'Next Checkup', value: 'May 15')),
+            Expanded(
+              child: _HealthCard(
+                icon: Icons.calendar_month,
+                label: 'Next Checkup',
+                value: 'May 15',
+                backgroundColor: const Color(0xFF333333), // Light black
+                iconColor: Colors.orangeAccent,
+              ),
+            ),
           ],
         ),
       ],
@@ -34,12 +71,16 @@ class _HealthCard extends StatefulWidget {
   final IconData icon;
   final String label;
   final String value;
+  final Color backgroundColor;
+  final Color iconColor;
 
   const _HealthCard({
     super.key,
     required this.icon,
     required this.label,
     required this.value,
+    required this.backgroundColor,
+    required this.iconColor,
   });
 
   @override
@@ -58,7 +99,7 @@ class _HealthCardState extends State<_HealthCard> with SingleTickerProviderState
       vsync: this,
     )..repeat(reverse: true);
 
-    _scale = Tween<double>(begin: 1.0, end: 1.1).animate(
+    _scale = Tween<double>(begin: 1.0, end: 1.05).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
   }
@@ -72,29 +113,32 @@ class _HealthCardState extends State<_HealthCard> with SingleTickerProviderState
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 6,
+      elevation: 8,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      color: Colors.white,
-      shadowColor: Colors.grey.withOpacity(0.2),
+      color: widget.backgroundColor,
+      shadowColor: Colors.white.withOpacity(0.2),
       child: Container(
+        padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black, width: 1),
           borderRadius: BorderRadius.circular(20),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Colors.white,
-              Colors.grey.shade100,
+              widget.backgroundColor,
+              widget.backgroundColor.withOpacity(0.8),
             ],
           ),
         ),
-        padding: const EdgeInsets.all(18),
         child: Column(
           children: [
             ScaleTransition(
               scale: _scale,
-              child: Icon(widget.icon, size: 32, color: Colors.redAccent),
+              child: Icon(
+                widget.icon,
+                size: 32,
+                color: widget.iconColor,
+              ),
             ),
             const SizedBox(height: 10),
             Text(
@@ -102,7 +146,7 @@ class _HealthCardState extends State<_HealthCard> with SingleTickerProviderState
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
                 fontSize: 14,
-                color: Colors.black87,
+                color: Colors.white,
               ),
               textAlign: TextAlign.center,
             ),
@@ -112,7 +156,7 @@ class _HealthCardState extends State<_HealthCard> with SingleTickerProviderState
               style: GoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.white,
               ),
               textAlign: TextAlign.center,
             ),
