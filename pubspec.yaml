@@ -34,8 +34,17 @@ dependencies:
   google_fonts: ^6.1.0
   table_calendar: ^3.0.9
   iconsax: ^0.0.8
-  http: ^1.0.0
+  latlong2: ^0.9.1
+
   fl_chart: ^0.65.0
+  flutter_map: ^8.1.1
+  http: ^1.0.0
+#  location: ^4.3.0
+  url_launcher: ^6.2.1
+  # Use the latest version of http
+  flutter_slidable: ^0.6.0
+  webview_flutter: ^4.2.2
+  webview_flutter_android: ^3.10.0
 
   flutter_blue_plus: ^1.0.0 # or latest version
   permission_handler: ^11.0.0
@@ -70,6 +79,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/img.png
+    - assets/leaflet_map.html
+    - assets/images/diet.png
+    - assets/images/sleep.png
+    - assets/images/reminder.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -7,8 +7,10 @@ import '../widgets/health_cards.dart';
 import '../widgets/health_insights.dart';
 import '../widgets/recent_records.dart';
 import '../pages/appointments.dart';
-import '..//pages/health_records.dart';
+import '../pages/emergency.dart';
+import '../pages/health_records.dart';
 import '../widgets/health_overview.dart';
+// import '../widgets/map_widget.dart';
 
 const Color kGreyishBlack = Color(0xFF1E1E1E);
 const Color kIconInactiveColor = Colors.white70;
@@ -38,8 +40,9 @@ class _DashboardPageState extends State<DashboardPage> {
       _buildDashboardContent(),
       HealthRecordsPage(),
       AppointmentsPage(),
-      const Center(child: Text("AI Insights", style: TextStyle(color: Colors.white))),
-      const Center(child: Text("Emergency", style: TextStyle(color: Colors.white))),
+      HealthInsights(),
+      EmergencyMap()
+
     ];
 
     return Scaffold(
@@ -59,15 +62,7 @@ class _DashboardPageState extends State<DashboardPage> {
         ),
         actions: _currentIndex == 0
             ? [
-          ElevatedButton.icon(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-            label: const Text(''),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.black,
-            ),
-          ),
+
           const SizedBox(width: 10),
         ]
             : null,

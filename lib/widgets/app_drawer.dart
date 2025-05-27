@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../screens/profile_screen.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -9,100 +11,119 @@ class AppDrawer extends StatelessWidget {
     return Drawer(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topRight: Radius.circular(20),
-          bottomRight: Radius.circular(20),
+          topRight: Radius.circular(24),
+          bottomRight: Radius.circular(24),
         ),
       ),
-      backgroundColor: Colors.grey[50], // light background like shadcn
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 10,
-                  color: Colors.black12,
-                  offset: Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Row(
-              children: [
-                const CircleAvatar(
-                  radius: 32,
-                  backgroundImage: AssetImage('assets/images/img.png'),
-                ),
-                const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'HealthTrack',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 0.5,
-                      ),
+      backgroundColor: const Color(0xFF1E1E1E), // Dark background
+      child: SafeArea(
+        child: Column(
+          children: [
+            // Header
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
+                color: Color(0xFF2C2C2C), // Slightly lighter than background
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 8,
+                    color: Colors.black26,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  const CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage('assets/images/img.png'),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'WellNest',
+                          style: GoogleFonts.poppins(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.4,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          'Smart AI-Driven Health Management System',
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey[400],
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 4),
-                    Text(
-                      'Live better',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                )
-              ],
+                  ),
+
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 12),
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              children: [
-                _DrawerItem(
-                  icon: Icons.dashboard,
-                  label: 'Overview',
-                  onTap: () {
-                    // Navigator.push(...) if needed
-                  },
-                ),
-                _DrawerItem(
-                  icon: Icons.person,
-                  label: 'Profile',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfileScreen()),
-                    );
-                  },
-                ),
-                _DrawerItem(
-                  icon: Icons.message,
-                  label: 'Messages',
-                  onTap: () {},
-                ),
-                _DrawerItem(
-                  icon: Icons.settings,
-                  label: 'Settings',
-                  onTap: () {},
-                ),
-              ],
+
+            const SizedBox(height: 20),
+
+            // Menu Items
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                children: [
+                  _DrawerItem(
+                    icon: Icons.dashboard_outlined,
+                    label: 'Overview',
+                    onTap: () {
+                      Navigator.pop(context); // close drawer
+                    },
+                  ),
+                  _DrawerItem(
+                    icon: Icons.person_outline,
+                    label: 'Profile',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfileScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  _DrawerItem(
+                    icon: Icons.message_outlined,
+                    label: 'Messages',
+                    onTap: () {},
+                  ),
+                  _DrawerItem(
+                    icon: Icons.settings_outlined,
+                    label: 'Settings',
+                    onTap: () {},
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            child: Text(
-              'v1.0.0',
-              style: TextStyle(fontSize: 12, color: Colors.grey),
+
+            const Divider(color: Colors.grey),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Text(
+                'Version 1.0.0',
+                style: GoogleFonts.poppins(
+                  fontSize: 12,
+                  color: Colors.grey[500],
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -121,16 +142,32 @@ class _DrawerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(icon, color: Colors.blueAccent),
-      title: Text(
-        label,
-        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-      ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    return InkWell(
       onTap: onTap,
-      hoverColor: Colors.blue[50], // subtle hover like shadcn
-      contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+      borderRadius: BorderRadius.circular(12),
+      splashColor: Colors.white10,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        margin: const EdgeInsets.symmetric(vertical: 4),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.transparent,
+        ),
+        child: Row(
+          children: [
+            Icon(icon, size: 20, color: Colors.white),
+            const SizedBox(width: 16),
+            Text(
+              label,
+              style: GoogleFonts.poppins(
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
